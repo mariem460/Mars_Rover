@@ -109,9 +109,7 @@ const Rover = (rover) => {
     if(!rover){
         return "";
     }
-    const images = rover.recentPhotos.map(recentPhoto=>{
-        return `<img src="${recentPhoto.img_src}"  width="100" height="100">`
-    })
+    const images = rover.recentPhotos.map(RoverImage)
 
     return  `
     <div><span class="data">Rover name:</span><span class="answer">${rover.name}</span></div>
@@ -120,6 +118,10 @@ const Rover = (rover) => {
     <div><span><span class="data">Rover status:</span><span class="answer">${rover.status}</span></div>
     <div>${images.join(" ")}</div>
     `
+}
+
+const RoverImage = (photo) => {
+    return `<img src="${photo.img_src}"  width="100" height="100">`
 }
 
 // ------------------------------------------------------  API CALLS
