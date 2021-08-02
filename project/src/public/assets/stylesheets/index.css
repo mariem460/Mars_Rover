@@ -7,32 +7,206 @@ body {
   min-height: 100vh;
 }
 
-header {
-  /* header styles */
+.text{
+  color: aliceblue;
+}
+.greeting{
+  color: #4CAF50;
 }
 
-main {
+.main {
   flex: 1;
-  padding: 20px;
+  padding: 10px;
+  background-image: url("https://www.sciencenews.org/wp-content/uploads/2021/01/012021_MT_blue-jet_feat-1030x580.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity:90%;
+  margin: -8px;
+  
+}
+.data{
+  color: #4CAF50;
+}
+.answer{
+  color: rgb(209, 209, 199);
 }
 
-footer {
+.footer {
   /* footer styles */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(154, 180, 226);
+  color: white;
+  text-align: center;
 }
+.buttons{
+  width: 90px;
+  height: 50px;
+  background-color: #4CAF50;
+}
+
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial;
+    min-height: 100vh;
+  }
+  
+  .text{
+    color: aliceblue;
+  }
+  .greeting{
+    color: #4CAF50;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 10px;
+    background-image: url("https://www.sciencenews.org/wp-content/uploads/2021/01/012021_MT_blue-jet_feat-1030x580.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity:90%;
+    margin: -8px;
+    
+  }
+  .data{
+    color: #4CAF50;
+  }
+  .answer{
+    color: rgb(209, 209, 199);
+  }
+  
+  .footer {
+    /* footer styles */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(154, 180, 226);
+    color: white;
+    text-align: center;
+  }
+  .buttons{
+    width: 90px;
+    height: 50px;
+    background-color: #4CAF50;
+  }
+  
+
+  
   /* use mobile */
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial;
+    min-height: 100vh;
+  }
+  
+  .text{
+    color: aliceblue;
+  }
+  .greeting{
+    color: #4CAF50;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 10px;
+    background-image: url("https://www.sciencenews.org/wp-content/uploads/2021/01/012021_MT_blue-jet_feat-1030x580.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity:90%;
+    margin: -8px;
+    
+  }
+  .data{
+    color: #4CAF50;
+  }
+  .answer{
+    color: rgb(209, 209, 199);
+  }
+  
+  .footer {
+    /* footer styles */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(154, 180, 226);
+    color: white;
+    text-align: center;
+  }
+  .buttons{
+    width: 90px;
+    height: 50px;
+    background-color: #4CAF50;
+  }
+  
+  
+  
   /* use mobile */
 }
 
 /* -------------------  LARGE SCREENS  -------------- */
 
 @media (min-width: 1824px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial;
+    min-height: 100vh;
+  }
+  
+  .text{
+    color: aliceblue;
+  }
+  .greeting{
+    color: #4CAF50;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 10px;
+    background-image: url("https://www.sciencenews.org/wp-content/uploads/2021/01/012021_MT_blue-jet_feat-1030x580.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity:90%;
+    margin: -8px;
+    
+  }
+  .data{
+    color: #4CAF50;
+  }
+  .answer{
+    color: rgb(209, 209, 199);
+  }
+  
+  .footer {
+    /* footer styles */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(154, 180, 226);
+    color: white;
+    text-align: center;
+  }
+  .buttons{
+    width: 90px;
+    height: 50px;
+    background-color: #4CAF50;
+  }
+  
   /* use mobile */
+
 }
