@@ -2,6 +2,7 @@ let store = {
     user: { name: "Student" },
     apod: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
+    selectedRover: null
 }
 
 // add our markup to the page
@@ -19,16 +20,14 @@ const render = async (root, state) => {
 
 // create content
 const App = (state) => {
-    let { rovers, apod } = state
+    let { user, selectedRover, apod } = state
 
     return `
         <header></header>
-        <main>
-            ${Greeting(store.user.name)}
+        <main class="main">
+            ${Greeting(user.name)}
             <section>
-                <h3>Put things on the page!</h3>
-                <p>Here is an example section.</p>
-                <p>
+                <p class="text">
                     One of the most popular websites at NASA is the Astronomy Picture of the Day. In fact, this website is one of
                     the most popular websites across all federal agencies. It has the popular appeal of a Justin Bieber video.
                     This endpoint structures the APOD imagery and associated metadata so that it can be repurposed for other
@@ -38,8 +37,16 @@ const App = (state) => {
                 </p>
                 ${ImageOfTheDay(apod)}
             </section>
+            <section>
+                ${Actions()}
+            </section>
+            <section>
+                ${Rover(selectedRover)}
+            </section>
+            
         </main>
-        <footer></footer>
+        <footer class = "footer">Office of the Chief Information Officer<br>
+        nasa-data@lists.arc.nasa.gov</footer>
     `
 }
 
@@ -54,7 +61,7 @@ window.addEventListener('load', () => {
 const Greeting = (name) => {
     if (name) {
         return `
-            <h1>Welcome, ${name}!</h1>
+            <h1 class="greeting">Welcome, ${name}!</h1>
         `
     }
 
@@ -69,11 +76,9 @@ const ImageOfTheDay = (apod) => {
     // If image does not already exist, or it is not from today -- request it again
     const today = new Date()
     const photodate = new Date(apod.date)
-    console.log(photodate.getDate(), today.getDate());
 
-    console.log(photodate.getDate() === today.getDate());
-    if (!apod || apod.date === today.getDate() ) {
-        getImageOfTheDay(store)
+    if (!apod || photodate === today.getDate() ) {
+        return getImageOfTheDay(store)
     }
 
     // check if the photo of the day is actually type video!
@@ -86,20 +91,48 @@ const ImageOfTheDay = (apod) => {
     } else {
         return (`
             <img src="${apod.image.url}" height="350px" width="100%" />
-            <p>${apod.image.explanation}</p>
-        `)
+            <p>${apod.image.explanation}</p>`);
     }
 }
 
+const Actions = () => {
+    
+    const buttons = store.rovers.map(roverName => {
+        const roverButton = `<button id="${roverName}" class="buttons" onclick="getRoverInfos(this.id)">${roverName}</button>`;
+        return roverButton;
+    });
+    return buttons.join(' ');
+    
+}
+
+const Rover = (rover) => {
+    if(!rover){
+        return "";
+    }
+    const images = rover.recentPhotos.map(recentPhoto=>{
+        return `<img src="${recentPhoto.img_src}"  width="100" height="100">`
+    })
+
+    return  `
+    <div><span class="data">Rover name:</span><span class="answer">${rover.name}</span></div>
+    <div><span class="data">Landing date:</span><span class="answer">${rover.landing_date}</span></div>
+    <div><span><span class="data">Launch date:</span><span class="answer">${rover.launch_date}</span></div>
+    <div><span><span class="data">Rover status:</span><span class="answer">${rover.status}</span></div>
+    <div>${images.join(" ")}</div>
+    `
+}
+
 // ------------------------------------------------------  API CALLS
-
 // Example API call
-const getImageOfTheDay = (state) => {
-    let { apod } = state
+const getImageOfTheDay = async () => {
 
-    fetch(`http://localhost:3000/apod`)
+    return await fetch(`http://localhost:3000/apod`)
         .then(res => res.json())
         .then(apod => updateStore(store, { apod }))
+}
 
-    return data
+const getRoverInfos = (roverName) => {
+    return fetch(`http://localhost:3000/rovers?name=${roverName}`)
+        .then(res => res.json())
+        .then(rover => updateStore(store, { selectedRover: rover }))
 }
