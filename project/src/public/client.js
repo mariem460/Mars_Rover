@@ -11,11 +11,12 @@ const root = document.getElementById('root')
 const updateStore = (newState) => {
     const oldState = Immutable.Map(store);
     store = oldState.merge(newState).toJS();
-    render(root, store)
+    render(root, store, App)
 }
 
-const render = async (root, state) => {
-    root.innerHTML = App(state)
+// make render a high order function that takes a component to render
+const render = async (root, state, mainComponent) => {
+    root.innerHTML = mainComponent(state)
 }
 
 
@@ -53,7 +54,7 @@ const App = (state) => {
 
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', () => {
-    render(root, store)
+    render(root, store, App)
 })
 
 // ------------------------------------------------------  COMPONENTS
