@@ -21,7 +21,7 @@ const render = async (root, state) => {
 
 // create content
 const App = (state) => {
-    let { user, selectedRover, apod } = state
+    const { user, selectedRover, apod } = state
 
     return `
         <header></header>
