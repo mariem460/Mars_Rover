@@ -8,8 +8,9 @@ let store = {
 // add our markup to the page
 const root = document.getElementById('root')
 
-const updateStore = (store, newState) => {
-    store = Object.assign(store, newState)
+const updateStore = (newState) => {
+    const oldState = Immutable.Map(store);
+    store = oldState.merge(newState).toJS();
     render(root, store)
 }
 
@@ -130,11 +131,11 @@ const getImageOfTheDay = async () => {
 
     return await fetch(`http://localhost:3000/apod`)
         .then(res => res.json())
-        .then(apod => updateStore(store, { apod }))
+        .then(apod => updateStore({ apod }))
 }
 
 const getRoverInfos = (roverName) => {
     return fetch(`http://localhost:3000/rovers?name=${roverName}`)
         .then(res => res.json())
-        .then(rover => updateStore(store, { selectedRover: rover }))
+        .then(rover => updateStore({ selectedRover: rover }))
 }
